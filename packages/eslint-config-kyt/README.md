@@ -15,7 +15,7 @@ This is an extension of the Airbnb [**JavaScript**](https://github.com/airbnb/ja
 Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
 1. Install the _eslint-config-kyt_ node module and its dependencies:  
-  `npm install eslint eslint-config-kyt eslint-config-airbnb eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-react --save-dev`
+  `npm install eslint prettier eslint-config-kyt eslint-config-airbnb eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-prettier eslint-plugin-prettier --save-dev`
 2. Copy the following into an `.eslintrc` in your project:  
 ```js
 {
@@ -52,6 +52,12 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 **[prefer-spread](http://eslint.org/docs/rules/prefer-spread)** - _Aimed to flag usage of Function.prototype.apply() that can be replaced with the spread operator._
 
 ## Changelog
+
+**0.4.0-rc.1** - 06/08/17
+
+### BREAKING CHANGES
+
+- Adds Prettier which may be a breaking change as your files might need some minor linting updates. Install Prettier into your favorite editor and/or `npm run lint -- --fix` to apply the updates. If you manually installed, please note the new Prettier modules above that need to be installed.
 
 **0.3.2** - 04/09/17
 

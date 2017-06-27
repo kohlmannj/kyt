@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "0.3.2",
+  "version": "0.4.0-rc.2",
   "description": "ESLint configuration for kyt projects.",
   "main": "eslintrc.json",
   "author": "NYTimes",
@@ -11,10 +11,13 @@
   "peerDependencies": {
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
+    "eslint-config-prettier": "2.1.1",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.0"
+    "eslint-plugin-prettier": "2.1.1",
+    "eslint-plugin-react": "6.10.0",
+    "prettier": "1.4.4"
   },
   "keywords": [
     "kyt",
