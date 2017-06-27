@@ -3,20 +3,11 @@
 
 const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
-const printAssets = require('../../utils/printAssets');
-const buildConfigs = require('../../utils/buildConfigs');
-const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const build = require('../../utils/build');
 
 module.exports = (config) => {
   logger.start('Starting production build...');
-
-  let serverCompiler;
-
-  const {
-    clientConfig,
-    serverConfig,
-  } = buildConfigs(config, 'production');
 
   // Clean the build directory.
   if (shell.rm('-rf', buildPath).code === 0) {
@@ -36,24 +27,7 @@ module.exports = (config) => {
     shell.mkdir('-p', `${buildPath}/public`);
   }
 
-  // Compiles server code using the prod.server config
-  const buildServer = () => {
-    serverCompiler = webpackCompiler(serverConfig, (stats) => {
-      if (stats.hasErrors()) process.exit(1);
-      logger.end('Done building');
-    });
-    serverCompiler.run(() => undefined);
-  };
-
-  const clientCompiler = webpackCompiler(clientConfig, (stats) => {
-    if (stats.hasErrors()) process.exit(1);
-    logger.info('Assets:');
-    printAssets(stats, clientConfig);
-    if (config.hasServer) {
-      buildServer();
-    } else {
-      logger.end('Done building');
-    }
+  Promise.all(build(), build(true)).then(res => {
+    console.log('YASSSSSSSSS!');
   });
-  clientCompiler.run(() => undefined);
 };
