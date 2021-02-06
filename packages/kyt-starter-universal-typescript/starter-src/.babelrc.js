@@ -4,6 +4,7 @@ module.exports = {
       'babel-preset-kyt-react',
       {
         includeRuntime: true,
+        typescript: true,
       },
     ],
   ],

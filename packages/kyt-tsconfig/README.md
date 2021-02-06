@@ -54,8 +54,6 @@ _Best for more advanced customization; ES2020 modules and libraries; excludes te
    - `tsBuildInfoFile`
    - `types`
 5. If necessary, add `include` and/or `exclude` properties to the config
-   - These base configs specify both `include` and `exclude`, which may work for you!
-   - Override them as needed to suit your project's folder layout and file naming conventions
 
 ## Examples
 
@@ -84,7 +82,9 @@ For a JavaScript and TypeScript-based React component library that uses [Babel](
     /* Incremental Build Options */
     "incremental": true,
     "tsBuildInfoFile": ".caches/tsconfig.tsbuildinfo"
-  }
+  },
+  "include": ["*.d.ts", "@types", "src"],
+  "exclude": ["**/__tests__", "**/__mocks__", "**/*.test.js"]
 }
 ```
 
@@ -105,7 +105,9 @@ For a TypeScript-based React application that is bundled using webpack or anothe
     /* Incremental Build Options */
     "incremental": true,
     "tsBuildInfoFile": ".caches/tsconfig.tsbuildinfo"
-  }
+  },
+  "include": ["*.d.ts", "@types", "src"],
+  "exclude": ["**/__tests__", "**/__mocks__", "**/*.test.js"]
 }
 ```
 
@@ -127,7 +129,9 @@ For a Node.js application that does _not_ use browser globals, JSX or isomorphic
     /* Incremental Build Options */
     "incremental": true,
     "tsBuildInfoFile": ".caches/tsconfig.tsbuildinfo"
-  }
+  },
+  "include": ["*.d.ts", "@types", "src"],
+  "exclude": ["**/__tests__", "**/__mocks__", "**/*.test.js"]
 }
 ```
 

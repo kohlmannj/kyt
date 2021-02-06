@@ -32,7 +32,5 @@
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  },
-  "include": ["*.d.ts", "@types", "src"],
-  "exclude": ["**/__tests__", "**/__mocks__", "**/*.test.js"]
+  }
 }

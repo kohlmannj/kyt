@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: ['kyt'],
+  extends: ['kyt-typescript'],
 };

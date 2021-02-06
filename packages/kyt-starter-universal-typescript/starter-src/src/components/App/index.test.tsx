@@ -5,7 +5,7 @@ import { DynamicImports } from 'kyt-runtime/server';
 import App, { Home, Tools } from '.';
 
 it('Test example', () => {
-  const wrapper = shallow(<App>test</App>);
+  const wrapper = shallow(<App />);
 
   expect(wrapper.is('div')).toBeTruthy();
 });

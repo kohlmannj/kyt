@@ -42,11 +42,20 @@
     "@babel/core": "7.12.10",
     "@babel/eslint-parser": "7.12.1",
     "@babel/eslint-plugin": "7.12.1",
+    "@types/enzyme": "3.10.8",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-router-dom": "5.1.7",
+    "@types/webpack-env": "1.16.0",
+    "@typescript-eslint/eslint-plugin": "4.14.0",
+    "@typescript-eslint/parser": "4.14.0",
     "babel-preset-kyt-react": "1.2.5",
     "enzyme": "3.11.0",
     "eslint": "7.17.0",
     "eslint-config-airbnb": "18.2.1",
+    "eslint-config-airbnb-typescript": "12.0.0",
     "eslint-config-kyt": "1.4.2",
+    "eslint-config-kyt-typescript": "1.0.0",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.1.3",
@@ -60,7 +69,8 @@
     "jest-preset-kyt-enzyme": "1.3.1",
     "jest-preset-kyt-styled": "1.4.0",
     "kyt": "1.0.1",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "typescript": "~4.1.3"
   },
   "version": "1.0.2",
   "kyt": {
@@ -71,6 +81,7 @@
       "jest.config.js",
       "kyt.config.js",
       "package.json",
+      "@types",
       "src",
       "test"
     ]

@@ -1,0 +1,16 @@
+{
+  "extends": "kyt-tsconfig/web/tsconfig.json",
+  "compilerOptions": {
+    /* Basic Options */
+    "baseUrl": "src",
+
+    /* Declaration Emit Options */
+    "noEmit": true,
+
+    /* Incremental Build Options */
+    "incremental": true,
+    "tsBuildInfoFile": ".caches/tsconfig.tsbuildinfo"
+  },
+  "include": ["*.d.ts", "@types", "src"],
+  "exclude": ["**/__tests__", "**/__mocks__", "**/*.test.js"]
+}

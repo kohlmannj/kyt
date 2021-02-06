@@ -2,7 +2,7 @@ import favicon from '../public/kyt-favicon.png';
 
 const getDeferScript = src => `<script defer src="${src}"></script>`;
 
-export default ({ html, ids, css, bundles }) => `
+export default ({ html, ids, css, bundles }) => /* html */ `
 <!DOCTYPE html>
 <html lang="en">
   <head>
