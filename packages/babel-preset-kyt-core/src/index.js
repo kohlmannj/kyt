@@ -7,11 +7,33 @@ const babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
 const babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 const merge = require('lodash.merge');
 
-module.exports = function getPresetCore(context, opts) {
-  opts = opts || {};
-  const userEnvOptions = opts.envOptions || {};
+/** @typedef {'client' | 'server' | 'test'} KytEnvType */
+
+/**
+ * @typedef {Object} Options
+ * @property {boolean} [includeRuntime] Enable `@babel/plugin-transform-runtime`
+ *   ([docs](https://babeljs.io/docs/en/babel-plugin-transform-runtime))
+ * @property {{
+ *   [P in KytEnvType]?: import('@babel/preset-env').Options;
+ * }} [envOptions] `server`,
+ *   `client` and `test`-specific options for `@babel/preset-env`
+ *   ([docs](https://babeljs.io/docs/en/babel-preset-env))
+ * @property {boolean} [typescript] Enable `@babel/preset-typescript`
+ *   ([docs](https://babeljs.io/docs/en/babel-preset-typescript))
+ */
+
+/**
+ * @param {import('@babel/core').ConfigAPI | {}} [_context]
+ * @param {Options} [opts]
+ */
+module.exports = function getPresetCore(
+  _context,
+  { envOptions: userEnvOptions = {}, includeRuntime, typescript } = {}
+) {
+  /** @type {import('@babel/preset-env').Options} */
   let envOptions = {};
 
+  /** @type {import('@babel/preset-env').Options} */
   const clientEnvOptions = {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
@@ -25,6 +47,7 @@ module.exports = function getPresetCore(context, opts) {
     },
   };
 
+  /** @type {import('@babel/preset-env').Options} */
   const serverEnvOptions = {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
@@ -56,24 +79,22 @@ module.exports = function getPresetCore(context, opts) {
     envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
     // Unless the user wants to define the transform-runtime plugin,
     // we needs to make sure it's true/added for tests.
-    if (opts.includeRuntime === undefined) opts.includeRuntime = true;
+    if (includeRuntime === undefined) includeRuntime = true;
   } else {
     envOptions = merge({}, clientEnvOptions, userEnvOptions.client ? userEnvOptions.client : {});
   }
 
   return {
-    presets: [
-      [babelPresetEnv, envOptions],
-      // allow users to opt in to TypeScript support
-      opts.typescript === true && '@babel/preset-typescript',
-    ].filter(Boolean),
+    presets: [[babelPresetEnv, envOptions], typescript && '@babel/preset-typescript'].filter(
+      Boolean
+    ),
 
     plugins: [
       [babelPluginDecorators, { legacy: true }],
       [babelPluginClassProperties, { loose: true }],
       babelPluginOptionalChaining,
       // provide the ability to opt into babel-plugin-transform-runtime inclusion
-      opts.includeRuntime === true && babelTransformRuntime,
+      includeRuntime === true && babelTransformRuntime,
       process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
     ].filter(Boolean),
   };

@@ -5,15 +5,23 @@ const reactTransformConstant = require('@babel/plugin-transform-react-constant-e
 const reactTransformInline = require('@babel/plugin-transform-react-inline-elements');
 const babelPresetKytCore = require('babel-preset-kyt-core');
 
-module.exports = function getPresetReact(context, opts) {
-  let useProductionTransforms = true;
+/**
+ * @typedef {Object} OwnOptions
+ * @property {boolean} [useProductionTransforms] Add production-only React plugins that remove
+ *   `propTypes`, transform constant elements, transform inline elements
+ */
+
+/** @typedef {import('babel-preset-kyt-core').Options & OwnOptions} Options */
+
+/**
+ * @param {import('@babel/core').ConfigAPI | {}} [_context]
+ * @param {Options} [opts]
+ */
+module.exports = function getPresetReact(
+  _context,
+  { useProductionTransforms = true, ...babelPresetKytCoreOptions } = {}
+) {
   const productionTransforms = [reactRemovePropTypes];
-
-  opts = opts || {};
-
-  if ('useProductionTransforms' in opts) {
-    useProductionTransforms = opts.useProductionTransforms;
-  }
 
   if (useProductionTransforms === true) {
     productionTransforms.push(reactTransformConstant);
@@ -27,21 +35,21 @@ module.exports = function getPresetReact(context, opts) {
         presets: [
           [babelPresetReact, { development: true }],
           // pass options through to core preset
-          [babelPresetKytCore, opts || {}],
+          [babelPresetKytCore, babelPresetKytCoreOptions],
         ],
       },
       test: {
         presets: [
           babelPresetReact,
           // pass options through to core preset
-          [babelPresetKytCore, opts || {}],
+          [babelPresetKytCore, babelPresetKytCoreOptions],
         ],
       },
       production: {
         presets: [
           babelPresetReact,
           // pass options through to core preset
-          [babelPresetKytCore, opts || {}],
+          [babelPresetKytCore, babelPresetKytCoreOptions],
         ],
         plugins: productionTransforms,
       },

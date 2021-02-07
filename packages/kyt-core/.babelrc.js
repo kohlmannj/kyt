@@ -1,10 +1,14 @@
 module.exports = {
   presets: [
     [
-      'babel-preset-kyt-react',
+      '@babel/preset-env',
       {
-        includeRuntime: true,
+        targets: {
+          node: '10',
+        },
       },
     ],
+    '@babel/preset-react'
   ],
+  plugins: ['@babel/plugin-transform-runtime'],
 };

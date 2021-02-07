@@ -41,3 +41,4 @@ cli-test
 test-packages
 
 .vscode
+*.tsbuildinfo

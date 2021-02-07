@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "references": [
+    { "path": "babel-preset-kyt-core" },
+    { "path": "babel-preset-kyt-react" },
+    // { "path": "eslint-config-kyt" },
+    // { "path": "eslint-plugin-kyt" },
+    // { "path": "jest-preset-kyt-enzyme" },
+    // { "path": "jest-preset-kyt-styled" },
+    { "path": "kyt-core" },
+    { "path": "kyt-runtime" },
+    // { "path": "kyt-starter-server" },
+    // { "path": "kyt-starter-static" },
+    // { "path": "kyt-starter-universal" },
+    // { "path": "kyt-starter-universal-typescript" },
+    { "path": "kyt-utils" },
+    // { "path": "stylelint-config-kyt" }
+  ]
+}

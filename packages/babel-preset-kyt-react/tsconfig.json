@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./lib"
+  },
+  "references": [
+    { "path": "../babel-preset-kyt-core" }
+  ],
+  "include": ["@types", "src"],
+  "exclude": ["**/*.test.*"]
+}

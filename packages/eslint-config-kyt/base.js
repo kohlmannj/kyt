@@ -53,6 +53,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
+        jsdocParser: true,
         printWidth: 100,
         semi: true,
         singleQuote: true,

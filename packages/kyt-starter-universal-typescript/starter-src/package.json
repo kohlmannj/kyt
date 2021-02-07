@@ -1,0 +1,78 @@
+{
+  "name": "kyt-starter-universal-typescript-src",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-universal-typescript.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nytimes/kyt/issues"
+  },
+  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
+  "scripts": {
+    "dev": "kyt dev",
+    "build": "kyt build",
+    "start": "node build/server/main.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "test": "jest",
+    "test-update": "jest -u",
+    "test-watch": "jest --watch",
+    "test-coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.12.5",
+    "compression": "1.7.4",
+    "core-js": "3.8.2",
+    "express": "4.17.1",
+    "kyt-runtime": "1.2.9",
+    "pretty-lights": "0.0.19",
+    "prop-types": "15.7.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "react-router-dom": "5.2.0",
+    "regenerator-runtime": "0.13.7",
+    "source-map-support": "0.5.19"
+  },
+  "devDependencies": {
+    "@babel/core": "7.12.10",
+    "@babel/eslint-parser": "7.12.1",
+    "@babel/eslint-plugin": "7.12.1",
+    "babel-preset-kyt-react": "1.2.5",
+    "enzyme": "3.11.0",
+    "eslint": "7.17.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-kyt": "1.4.2",
+    "eslint-config-prettier": "7.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "24.1.3",
+    "eslint-plugin-jest-formatting": "2.0.0",
+    "eslint-plugin-json": "2.1.2",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "jest": "26.6.3",
+    "jest-preset-kyt-enzyme": "1.3.1",
+    "jest-preset-kyt-styled": "1.4.0",
+    "kyt": "1.0.1",
+    "prettier": "2.2.1"
+  },
+  "version": "1.0.2",
+  "kyt": {
+    "files": [
+      ".babelrc.js",
+      ".eslintrc.js",
+      ".gitignore",
+      "jest.config.js",
+      "kyt.config.js",
+      "package.json",
+      "src",
+      "test"
+    ]
+  }
+}

@@ -1,5 +1,13 @@
 const logger = console;
-const write = (status, text, verbose) => {
+
+/** @typedef {'task' | 'start' | 'end' | 'info' | 'warn' | 'error' | 'debug'} Status */
+
+/**
+ * @param {Status} status
+ * @param {string} text
+ * @param {Record<string, unknown> | string | Error} [data]
+ */
+const write = (status, text, data) => {
   let textToLog = '';
   let logObject = false;
 
@@ -14,11 +22,11 @@ const write = (status, text, verbose) => {
   textToLog += text;
 
   // Adds optional verbose output
-  if (verbose) {
-    if (typeof verbose === 'object') {
+  if (data) {
+    if (typeof data === 'object') {
       logObject = true;
     } else {
-      textToLog += `\n${verbose}`;
+      textToLog += `\n${data}`;
     }
   }
 
@@ -26,46 +34,87 @@ const write = (status, text, verbose) => {
   if (['start', 'end', 'error'].indexOf(status) > -1) {
     logger.log();
   }
-  if (logObject) logger.dir(verbose, { depth: 15 });
+  if (logObject) logger.dir(data, { depth: 15 });
 };
-// Printing any statements
+/**
+ * Printing any statements
+ *
+ * @param {string} text
+ * @returns {void}
+ */
 const log = text => {
   logger.log(text);
 };
 
-// Starting a process
+/**
+ * Starting a process
+ *
+ * @param {string} text
+ * @returns {void}
+ */
 const start = text => {
   write('start', text);
 };
 
-// Ending a process
+/**
+ * Ending a process
+ *
+ * @param {string} text
+ * @returns {void}
+ */
 const end = text => {
   write('end', text);
 };
 
-// Tasks within a process
+/**
+ * Tasks within a process
+ *
+ * @param {string} text
+ * @returns {void}
+ */
 const task = text => {
   write('task', text);
 };
 
-// Info about a process task
+/**
+ * Info about a process task
+ *
+ * @param {string} text
+ * @returns {void}
+ */
 const info = text => {
   write('info', text);
 };
 
-// Verbose output
-// takes optional data
+/**
+ * Verbose output
+ *
+ * @param {string} text
+ * @param {Record<string, unknown> | string} [data]
+ * @returns {void}
+ */
 const debug = (text, data) => {
   write('debug', text, data);
 };
 
-// Warn output
+/**
+ * Warn output
+ *
+ * @param {string} text
+ * @param {Record<string, unknown> | string} [data]
+ * @returns {void}
+ */
 const warn = (text, data) => {
   write('warn', text, data);
 };
 
-// Error output
-// takes an optional error
+/**
+ * Error output
+ *
+ * @param {string} text
+ * @param {Record<string, unknown> | string} [err]
+ * @returns {void}
+ */
 const error = (text, err) => {
   write('error', text, err);
 };

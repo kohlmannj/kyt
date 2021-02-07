@@ -63,4 +63,10 @@ describe('babel-preset-kyt-core', () => {
 
     expect(config.plugins[4]).toEqual('import-node');
   });
+
+  it('includes @babel/preset-typescript when requested', () => {
+    const config = presetKytCore({}, { typescript: true });
+
+    expect(config.presets[1]).toEqual('@babel/preset-typescript');
+  });
 });

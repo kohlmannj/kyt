@@ -3,6 +3,7 @@
   "version": "1.1.10",
   "description": "An opinionated babel preset, best used with kyt",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "NYTimes",
   "license": "Apache-2.0",
   "repository": "git+https://github.com/nytimes/kyt/packages/kyt-babel-preset-core",
@@ -31,7 +32,7 @@
     "lib"
   ],
   "scripts": {
-    "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
+    "prepare": "babel src -d lib --ignore \"**/__tests__/**\""
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

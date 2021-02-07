@@ -12,7 +12,7 @@ const jestConfig = {
   snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
   testMatch: ['**/*.test.[jt]s?(x)'],
   testEnvironment: require.resolve('jest-environment-jsdom-global'),
-  collectCoverageFrom: ['**/*.{js,jsx,json,ts,tsx}'],
+  collectCoverageFrom: ['**/*.[jt]s?(x)'],
   coverageDirectory: '<rootDir>/coverage',
   errorOnDeprecated: true,
   cacheDirectory: '<rootDir>/.caches/jest',

@@ -1,0 +1,16 @@
+{
+  "name": "kyt-starter-universal-typescript",
+  "version": "1.0.2",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-universal-typescript.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nytimes/kyt/issues"
+  },
+  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
+  "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
+}

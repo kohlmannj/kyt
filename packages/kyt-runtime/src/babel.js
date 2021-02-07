@@ -1,3 +1,11 @@
+/** @typedef {import('@babel/core').NodePath<import('@babel/types').CallExpression>} CallExpression */
+
+/** @typedef {import('@babel/types').Node} NodeName */
+
+/**
+ * @param {typeof import('@babel/core')} babel
+ * @returns {import('@babel/core').PluginObj}
+ */
 module.exports = function kytRuntimeBabel({ types: t }) {
   return {
     visitor: {
@@ -30,7 +38,7 @@ module.exports = function kytRuntimeBabel({ types: t }) {
 
           if (!callExpression.isCallExpression()) return;
 
-          let args = callExpression.get('arguments');
+          let args = /** @type {CallExpression} */ (callExpression).get('arguments');
           if (args.length > 2) {
             throw callExpression.buildCodeFrameError(
               'kyt-runtime/dynamic only accepts 2 arguments'
@@ -51,18 +59,23 @@ module.exports = function kytRuntimeBabel({ types: t }) {
               callExpression.node.arguments.push(t.objectExpression([]));
             }
             // This is needed as the code is modified above
-            args = callExpression.get('arguments');
+            args = /** @type {CallExpression} */ (callExpression).get('arguments');
             [loader, options] = args;
           }
 
-          if (!options.isObjectExpression()) return;
+          if (!options || !options.isObjectExpression()) return;
 
           const properties = options.get('properties');
+
           const propertiesMap = {};
+
+          if (!properties || !Array.isArray(properties)) return;
 
           properties.forEach(property => {
             const key = property.get('key');
-            propertiesMap[key.node.name] = property;
+            if ('node' in key && key.node && 'name' in key.node && key.node.name) {
+              propertiesMap[key.node.name] = property;
+            }
           });
 
           if (propertiesMap.webpack) {
